@@ -9,8 +9,8 @@ import {
   LogOut,
   Menu,
   X,
-  UserCircle,
-  ShieldCheck
+  ShieldCheck,
+  Recycle
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -28,13 +28,12 @@ export default function Navbar() {
   // Role based navigation logic
   const navItems = [
     { label: 'Dashboard', path: '/dashboard', icon: LayoutDashboard, show: user?.role === 'user' || user?.role === 'company' },
+        { label: 'Scan Waste', path: '/scan', icon: ScanLine, show: user?.role === 'user' || user?.role === 'company' },
     { label: 'Leaderboard', path: '/leaderboard', icon: Trophy, show: true },
-    { label: 'Scan Waste', path: '/scan', icon: ScanLine, show: user?.role === 'user' || user?.role === 'company' },
+
     { label: 'Green Points', path: '/points', icon: Coins, show: user?.role === 'user' || user?.role === 'company' },
     { label: 'Pickups', path: '/pickups', icon: Truck, show: user?.role === 'user' || user?.role === 'company' },
-
     { label: 'Manager Panel', path: '/manager', icon: LayoutDashboard, show: user?.role === 'manager' },
-
     { label: 'Admin Panel', path: '/admin', icon: ShieldCheck, show: user?.role === 'admin' },
   ];
 
@@ -42,17 +41,17 @@ export default function Navbar() {
     location.pathname === path ? 'text-[#22c55e] bg-green-500/10' : 'text-slate-400 hover:text-white hover:bg-white/5';
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900 backdrop-blur-md border-b border-white/5">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black backdrop-blur-md border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
 
-          {/* Logo - Fixed to RecycleBD */}
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(34,197,94,0.3)]">
-              <span className="text-[#070e1a] font-bold text-xl">R</span>
+          {/* Logo - Fixed to RecycleBD with Icon */}
+          <Link to="/" className="flex items-center gap-2 group">
+            <div className="w-9 h-9 bg-[#22c55e] rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.2)] transition-transform group-hover:scale-105">
+              <Recycle size={20} strokeWidth={2.5} className="text-[#070e1a]" />
             </div>
-            <span className="text-white font-bold text-xl tracking-tight hidden sm:block">
-              Recycle<span className="text-green-500">BD</span>
+            <span className="text-white font-bold text-2xl tracking-tight hidden sm:block">
+              Recycle<span className="text-[#22c55e]">BD</span>
             </span>
           </Link>
 
